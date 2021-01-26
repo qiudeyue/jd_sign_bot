@@ -9,7 +9,7 @@ const download = require('download');
 
 // 公共变量
 const KEY = process.env.JD_COOKIE;
-const serverJ = process.env.PUSH_KEY;
+const QmsgJ = process.env.PUSH_KEY;
 const DualKey = process.env.JD_COOKIE_2;
 
 
@@ -28,10 +28,10 @@ async function changeFile () {
    await fs.writeFileSync( './JD_DailyBonus.js', content, 'utf8')
 }
 
-async function sendNotify (text,desp) {
+async function sendNotify (desp) {
   const options ={
-    uri:  `https://sc.ftqq.com/${serverJ}.send`,
-    form: { text, desp },
+    uri:  `https://qmsg.zendee.cn/group/${QmsgJ}`,
+    form: { desp },
     json: true,
     method: 'POST'
   }
@@ -66,9 +66,7 @@ async function start() {
     a1 = content.indexOf('【签到')
     a2 = content.lastIndexOf('京东商城-京豆')
     res = content.substring(a1,a2)
-
-    
-    await sendNotify('ceshi', ` ${res} `);
+    await sendNotify('京东签到概述\n' + ` ${res} `);
   }
 }
 
