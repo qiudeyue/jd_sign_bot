@@ -63,13 +63,12 @@ async function start() {
     if (fs.existsSync(path)) {
       content = fs.readFileSync(path, "utf8");
     }
-    let t = content.match(/【签到概览】:((.|\n)*)【签到总计】/)
-    let res = t ? t[1].replace(/\n/,'') : '失败'
-    let t2 = content.match(/【签到总计】:((.|\n)*)【账号总计】/)
-    let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
+    a1 = content.indexOf('【签到')
+    a2 = content.lastIndexOf('京东商城-京豆')
+    res = content.substring(a1,a2)
 
     
-    await sendNotify("" + ` ${t2} ` + ` ${t} ` + new Date().toLocaleDateString(), content);
+    await sendNotify('ceshi', ` ${res} `);
   }
 }
 
