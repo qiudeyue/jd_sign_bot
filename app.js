@@ -57,7 +57,7 @@ async function start() {
   await exec("node JD_DailyBonus.js >> result.txt");
   console.log('执行完毕')
 
-  if (serverJ) {
+  if (QmsgJ) {
     const path = "./result.txt";
     let content = "";
     if (fs.existsSync(path)) {
