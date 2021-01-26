@@ -31,7 +31,7 @@ async function changeFile () {
 async function sendNotify (msg) {
   const options ={
     uri:  `https://qmsg.zendee.cn/group/${QmsgJ}`,
-    form: { msg },
+    form: {msg},
     json: true,
     method: 'POST'
   }
@@ -63,10 +63,11 @@ async function start() {
     if (fs.existsSync(path)) {
       content = fs.readFileSync(path, "utf8");
     }
+    console.log(content)
     a1 = content.indexOf('【签到')
     a2 = content.lastIndexOf('京东商城-京豆')
-    res = content.substring(a1,a2)
-    await sendNotify('京东签到概述\n' + ` ${res} `);
+    res = content.substring(a1,a2-2)
+    await sendNotify('京东签到概述：\n'+res);
   }
 }
 
