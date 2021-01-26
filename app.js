@@ -28,10 +28,10 @@ async function changeFile () {
    await fs.writeFileSync( './JD_DailyBonus.js', content, 'utf8')
 }
 
-async function sendNotify (desp) {
+async function sendNotify (msg) {
   const options ={
     uri:  `https://qmsg.zendee.cn/group/${QmsgJ}`,
-    form: { desp },
+    form: { msg },
     json: true,
     method: 'POST'
   }
